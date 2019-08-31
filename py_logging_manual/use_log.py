@@ -19,9 +19,15 @@ logger_handler = logging.handlers.TimedRotatingFileHandler(S_LOG_URL, 'midnight'
 # 设置后缀为 年-月-日_时-分-秒.log
 logger_handler.suffix = "%Y-%m-%d_%H-%M-%S.log"
 
-# 给hanlder设置上述的日志格式
+# 给logger_handler设置上述的日志格式
 logger_handler.setFormatter(logging.Formatter(S_LOG_FORMAT))
-             
+
+# 设置控制台同时输出的Handler
+consle_handler = logging.StreamHandler()
+
+# 给consle_handler设置上述的日志格式
+consle_handler.setFormatter(logging.Formatter(S_LOG_FORMAT))
+
 # 得到一个Logger对象，单例模式             
 run_logger = logging.getLogger()
 
@@ -30,3 +36,4 @@ run_logger.setLevel(logging.INFO)
 
 # Logger对象加入上述设置好的hanlder
 run_logger.addHandler(logger_handler)
+run_logger.addHandler(consle_handler)
